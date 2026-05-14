@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+curl -fsSL "https://api.github.com/repos/atomfinger/brunost/releases" \
+  | grep '"tag_name"' \
+  | sed 's/.*"tag_name": "v\([^"]*\)".*/\1/' \
+  | sort -V \
+  | tr '\n' ' '
